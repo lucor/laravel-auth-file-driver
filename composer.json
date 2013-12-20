@@ -1,0 +1,27 @@
+{
+    "name": "lucor/laravel-auth-file-driver",
+    "description": "A File Authentication Driver for Laravel",
+    "keywords": ["laravel", "driver", "auth"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Luca Corbo",
+            "email": "lu.corbo@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+        "illuminate/support": "4.1.*",
+        "illuminate/auth": "4.1.*",
+        "mockery/mockery": "0.8.0",
+        "phpunit/phpunit": "3.8.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Lucor\\Auth\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
