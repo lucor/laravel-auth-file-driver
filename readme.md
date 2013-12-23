@@ -2,6 +2,10 @@
 
 A File Authentication Driver for [Laravel](http://laravel.com).
 
+[![Total Downloads](https://poser.pugx.org/lucor/laravel-auth-file-driver/downloads.png)](https://packagist.org/packages/lucor/laravel-auth-file-driver)
+[![Latest Stable Version](https://poser.pugx.org/lucor/laravel-auth-file-driver/v/stable.png)](https://packagist.org/packages/lucor/laravel-auth-file-driver)
+[![Build Status](https://travis-ci.org/lucor/laravel-auth-file-driver.png)](https://travis-ci.org/lucor/laravel-auth-file-driver)
+
 ## Installation
 
 ### Composer
@@ -10,7 +14,7 @@ As usual, install this package through Composer.
 
 ```js
 "require": {
-    "lucor/laravel-file-auth-driver": "dev-master"
+    "lucor/laravel-file-auth-driver": "0.9.*"
 }
 ```
 
