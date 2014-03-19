@@ -14,7 +14,7 @@ As usual, install this package through Composer.
 
 ```js
 "require": {
-    "lucor/laravel-file-auth-driver": "0.9.*"
+    "lucor/laravel-auth-file-driver": "0.9.*"
 }
 ```
 
