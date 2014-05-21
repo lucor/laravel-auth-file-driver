@@ -16,16 +16,23 @@ class FileUserProvider implements UserProviderInterface
     protected $users;
 
     /**
+     * The cache used for storing connection tokens
+     * @var \Illuminate\Cache\CacheManager
+     */
+    protected $cache;
+
+    /**
      * Create a new file user provider.
      *
      * @param  array $users
      * @param  \Illuminate\Hashing\HasherInterface $hasher
      * @return void
      */
-    public function __construct(array $users, HasherInterface $hasher)
+    public function __construct(array $users, HasherInterface $hasher, \Illuminate\Cache\CacheManager $cache)
     {
-        $this->users = $users;
+        $this->users  = $users;
         $this->hasher = $hasher;
+        $this->cache  = $cache;
     }
 
     /**
@@ -74,6 +81,32 @@ class FileUserProvider implements UserProviderInterface
         $plain = $credentials['password'];
 
         return $this->hasher->check($plain, $user->getAuthPassword());
+    }
+
+    /**
+     * Retrieve a user by by their unique identifier and "remember me" token.
+     *
+     * @param  mixed  $identifier
+     * @param  string  $token
+     * @return \Illuminate\Auth\UserInterface|null
+     */
+    public function retrieveByToken($identifier, $token) 
+    {
+        return $this->cache->get('user'.$identifier.'_token_'.$token, NULL);
+    }
+
+    /**
+     * Update the "remember me" token for the given user in storage.
+     *
+     * @param  \Illuminate\Auth\UserInterface  $user
+     * @param  string  $token
+     * @return void
+     */
+    public function updateRememberToken(UserInterface $user, $token)
+    {
+        //We use the cache because it's easier than managing old file deletion.
+        //Such a micro functionnality souldn't expect more than 24 hours autologin
+        $this->cache->put('user'.$user->getAuthIdentifier().'_token_'.$token, $user, 60 * 24);
     }
 
 }
