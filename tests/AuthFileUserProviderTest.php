@@ -29,7 +29,8 @@ class AuthFileUserProviderTest extends PHPUnit_Framework_TestCase
     private function getProvider() {
         $hasher = m::mock('Illuminate\Hashing\HasherInterface');
         $hasher->shouldReceive('check')->atMost(1)->with('plain', 'hash')->andReturn(true);
-        return new FileUserProvider($this->users, $hasher);
+        $cache = new \Illuminate\Cache\CacheManager(NULL);
+        return new FileUserProvider($this->users, $hasher, $cache);
     }
 
     public function testRetrieveByIdReturnsUserWhenUserIsFound()

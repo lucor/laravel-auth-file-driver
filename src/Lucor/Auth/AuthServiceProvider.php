@@ -24,7 +24,7 @@ class AuthServiceProvider extends ServiceProvider
         \Auth::extend('file', function ($app) {
             $users = \Config::get('laravel-auth-file-driver::users');
             return new Guard(
-                new FileUserProvider($users, $app['hash']),
+                new FileUserProvider($users, $app['hash'], $app['cache']),
                 $app['session.store']
             );
         });
